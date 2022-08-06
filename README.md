@@ -6,6 +6,6 @@ DMM WEBCAMPで作成するアプリ
 
 Ruby on Rails
 
-#推奨環境
+# 推奨環境
 
 Ruby 3.1 以降 Rails 6.1 以降
