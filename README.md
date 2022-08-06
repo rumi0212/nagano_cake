@@ -1,24 +1,11 @@
-# README
+# 長野ケーキ　ECサイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+DMM WEBCAMPで作成するアプリ
 
-Things you may want to cover:
+# 開発環境
 
-* Ruby version
+Ruby on Rails
 
-* System dependencies
+#推奨環境
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ruby 3.1 以降 Rails 6.1 以降
