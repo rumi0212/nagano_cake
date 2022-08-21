@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
-  # 顧客用
-  devise_for :customers, skip: [:passwords], controllers: {
-   registrations: "public/registrations",
-   sessions: 'public/sessions'
-  }
-
+  
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    sessions: "admin/sessions",
@@ -22,5 +17,14 @@ Rails.application.routes.draw do
       patch "admin/order_details/:id" => "order_details#update", as: "order_details"
     end
   end
+
+# 顧客用
+  devise_for :customers, skip: [:passwords], controllers: {
+   registrations: "public/registrations",
+   sessions: 'public/sessions'
+  }
+
+  get 'about' => 'public/homes#about'
+  root 'public/homes#top'
 
 end

@@ -19,7 +19,7 @@
             <td><%= link_to "#{order.created_at.strftime('%Y/%m/%d %H:%M:%S')}", admin_order_path(order.id), class: "text-dark border-bottom border-dark" %></td>
             <td><%= full_name(order.customer) %></td>
             <td><%= order.order_details.sum(:amount) %></td>
-            <td><%= order.status %></td>
+            <td><%= order.order_status %></td>
           </tr>
           <% end %>
         </tbody>
