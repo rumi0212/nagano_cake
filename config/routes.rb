@@ -24,7 +24,17 @@ Rails.application.routes.draw do
    sessions: 'public/sessions'
   }
 
-  get 'about' => 'public/homes#about'
-  root 'public/homes#top'
+  scope module: :customers do
+  root to: "homes#top"
+  get "about" => "homes#about"
+  
+  resource :customers,only: [:edit,:update,:show] do
+    collection do
+  	get 'quit'
+  	patch 'out'
+  	end
+  end
+  
+  end
 
 end
