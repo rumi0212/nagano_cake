@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   scope module: :customers do
   root to: "homes#top"
   get "about" => "homes#about"
+  resources :items,only: [:index,:show]
   
   resource :customers,only: [:edit,:update,:show] do
     collection do

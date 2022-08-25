@@ -3,7 +3,7 @@
   <div class="mt-5">
     <span class="fs-3  offset-md-1 bg-light font-monospace">配送先編集</span>
   </div>
-  <%= form_with model: @address, local: true do |f| %>
+  <%= form_with model: @address, url:address_path, local: true do |f| %>
     <div class="form-inline">
       <%= f.label :郵便番号（ハイフンなし）, class:"col-3 mt-5"%>
       <%= f.text_field :postal_code, class:"col-3" %>
