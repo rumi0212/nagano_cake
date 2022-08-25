@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   	end
   end
   
+    resources :addresses, except: [:show, :new]
   end
 
 end
