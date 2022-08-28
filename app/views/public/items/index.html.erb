@@ -13,11 +13,7 @@
         <% end %>
         <div class="card-body">
           <p class="item-details item-name card-text"><%= item.name %></p>
-          <% if item.is_active == true %>
-            <p class="item-details card-text">¥<%= (item.price * 1.08).to_i.to_s(:delimited, delimiter: ',') %></p>
-          <% else %>
-            <p class="text-danger font-weight-bold card-text">売り切れ</p>
-        <% end %>
+          <p class="item-details card-text">¥<%= (item.price * 1.10).to_i.to_s(:delimited, delimiter: ',') %></p>
         </div>
       </div>
     </div>
