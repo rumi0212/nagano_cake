@@ -1,6 +1,6 @@
 <div class="container">
    <div class="row mb-2">
-      
+
         <h4 class="mb-4 text-color col-3 text-center pt-4 rounded-pill">ショッピングカート</h4>
         <div class="col-8 cart_image offset-1"></div>
     </div>
@@ -28,11 +28,11 @@
               <% @cart_items.each do |cart_product| %>
                 <tr>
                   <td>
-                    <%= attachment_image_tag cart_product.product, :image, size:"60x50", fallback: "no_image.jpg" %>
+                    <%= image_tag @cart_item.image,:image, size:"60x50", fallback: "no_image.jpeg" %>
                     <%= cart_item.item.name %>
                   </td>
                   <td>
-                    <% cart_item.item.price %>
+                    <%= cart_item.item.with_tax_price%>
                   </td>
                   <td>
                     <%= form_with model: @cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
@@ -41,8 +41,9 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= cart_item.item.price*cart_item.amount %>
+                    <%= cart_item.subtotal%>
                   </td>
+                    <% @合計金額 +=  cart_item.subtotal %>
                   <td>
                     <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-sm btn-primary" %>
                   </td>
@@ -69,7 +70,7 @@
 
    <div class = "row">
      <div class = "col text-center">
-       <%= link_to '情報入力に進む', orders_new_path, class:'btn btn-primary ' %>
+       <%= link_to '情報入力に進む', new_order_path, class:'btn btn-primary ' %>
      </div>
    </div>
 

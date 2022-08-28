@@ -6,6 +6,14 @@ class Public::CartItemsController < ApplicationController
     @cart_items= current_customer.cart_items.all
   end
   
+  def with_tax_price
+    (price * 1.1).floor
+  end
+  
+  def subtotal
+    item.with_tax_price * amount
+  end
+  
   def create
     @cart_item = CartItem.new(cart_items_params)
     @cart_item.customer_id = current_customer.id
@@ -43,8 +51,8 @@ class Public::CartItemsController < ApplicationController
   
   private
   
-  def params_cart_item
-    params.require(:cart_item).permit(:customer_id,:amount, :item_id)
+  def cart_item_params
+    params.require(:cart_item).permit(:amount, :item_id)
   end
   
 end
