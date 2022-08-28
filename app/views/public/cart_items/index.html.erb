@@ -1,55 +1,76 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-  <div class='col-md-7'>
-     
+<div class="container">
+   <div class="row mb-2">
       
-      
-  </div>
-  <div class='col-md-11 offset-md-1'>
-     <h2>ショッピングカート</h2>
-     
-　<table class='table table-hover table-inverse'>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td>
-          <%= cart_item.item.name %>
-        </td>
-        <td><%= cart_item.item.price %></td>
-        <td><%= form_with model: @cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
-            <%= f.hidden_field :item_id, value: cart_item.item.id %>
-            <%= f.number_field :amount,value: cart_item.amount %>
-            <%= f.submit "変更", class: 'btn btn-success btn-sm' %>
-            <% end %></td>
-          
-        <td><%= cart_item.item.price*cart_item.amount %> </td>
-      
-        <td><%= link_to " 削除する",cart_item_path(cart_item), method: :delete, local: true, data: {confirm: "#{cart_item.item.name}を削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %></td>
-        
+        <h4 class="mb-4 text-color col-3 text-center pt-4 rounded-pill">ショッピングカート</h4>
+        <div class="col-8 cart_image offset-1"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="text-right mb-1">
+          <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, class:'btn btn-primary button mb-1' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-color">
+                <th>商品名</th>
+                <th>単価(税込)</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th></th>
+              </tr>
+            </thead>
 
-       
-      </tr>
-    <% end %>
-    
-    
-  </tbody>
-  </table>
-  <%= link_to " カート内全て削除する",destroy_all_cart_items_path, method: :delete, local: true, data: {confirm: "全て削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
-  <tr>
-    <td>合計金額</td><td>¥<%= @total.round.to_s(:delimited)%></td>
-  </tr>
+            <tbody>
+              <% @cart_items.each do |cart_product| %>
+                <tr>
+                  <td>
+                    <%= attachment_image_tag cart_product.product, :image, size:"60x50", fallback: "no_image.jpg" %>
+                    <%= cart_item.item.name %>
+                  </td>
+                  <td>
+                    <% cart_item.item.price %>
+                  </td>
+                  <td>
+                    <%= form_with model: @cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
+                      <%= f.select :amount, options_for_select((1..10).to_a, selected:cart_item.amount) %>
+                      <%= f.submit '変更', class:"btn btn-primary" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= cart_item.item.price*cart_item.amount %>
+                  </td>
+                  <td>
+                    <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-sm btn-primary" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+      </div>
+   </div>
 
-  <%= link_to " 買い物を続ける",new_order_path, class: "glyphicon glyphicon-trash btn btn-primary" %>
+   <div class = "row">
+     <div class = "col">
+       <%= link_to '買い物を続ける', root_path, class:'btn btn-primary' %>
+       <table align="right" class="table table-bordered col-2">
+        <tr>
+          <td class="table-color">合計金額</td>
+          <td>
+            ¥<%= @sum.to_s(:delimited) %>
+          </td>
+        </tr>
+      </table>
+     </div>
+   </div>
 
-    
-  </div>
-</div>
+   <div class = "row">
+     <div class = "col text-center">
+       <%= link_to '情報入力に進む', orders_new_path, class:'btn btn-primary ' %>
+     </div>
+   </div>
+
+ </div>
