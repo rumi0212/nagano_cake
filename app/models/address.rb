@@ -4,8 +4,8 @@ class Address < ApplicationRecord
     validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
     
     # order/newで使用
-  def order_address
-    self.postal_code + self.address + self.name
+  def address_display
+  '〒' + postal_code + ' ' + address + ' ' + name
   end
   
 end
