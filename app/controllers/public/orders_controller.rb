@@ -39,7 +39,7 @@ class Public::OrdersController < ApplicationController
         
   end
 
-
+ 
 
   def thanx
   end
