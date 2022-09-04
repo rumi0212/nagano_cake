@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
    sessions: "admin/sessions",
@@ -24,31 +24,31 @@ Rails.application.routes.draw do
    sessions: 'public/sessions'
   }
 
-  scope module: :customers do
-  root to: "homes#top"
-  get "about" => "homes#about"
-  resources :items,only: [:index,:show]
-  
-  resource :customers,only: [:edit,:update,:show] do
-    collection do
-  	get 'quit'
-  	patch 'out'
-  	end
-  end
-  
-  resources :cart_items, only: [:index, :update, :create, :destroy] do
+  scope module: :public do
+    root to: "homes#top"
+    get "about" => "homes#about"
+    resources :items,only: [:index,:show]
+
+    resource :customers,only: [:edit,:update,:show] do
+      collection do
+    	get 'quit'
+    	patch 'out'
+    	end
+    end
+
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
         delete 'destroy_all'
       end
     end
-    
-  resources :orders,only: [:new,:index,:show,:create] do
-    collection do
-    post 'confirm'
-    get 'thanx'
+
+    resources :orders,only: [:new,:index,:show,:create] do
+      collection do
+      post 'confirm'
+      get 'thanx'
+      end
     end
-  end
-  
+
     resources :addresses, except: [:show, :new]
   end
 

@@ -6,18 +6,18 @@
 
   <div class="row mt-4">
     <span class="fst-italic fs-5 col-2">登録情報</span>
-    <%= link_to "編集する", edit_customer_path, class: "btn btn-sm btn-success col-2 mb-5" %>
+    <%= link_to "編集する", edit_customers_path, class: "btn btn-sm btn-success col-2 mb-5" %>
   </div>
 
   <table class="table table-bordered", style="width: 70%">
     <tbody>
       <tr>
         <td class="col-2 bg-light">氏名</td>
-        <td><%= full_name(@customer) %></td>
+        <td><%= @customer.last_name + " " + @customer.first_name %></td>
       </tr>
       <tr>
         <td class="bg-light">カナ</td>
-        <td><%= ana_full_name(@customer) %></td>
+        <td><%=@customer.last_name_kana + " " + @customer.first_name_kana %></td>
       </tr>
       <tr>
         <td class="bg-light">郵便番号</td>

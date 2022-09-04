@@ -13,13 +13,12 @@
   </div>
 </div>
 
-<div class="item-image-slide">
-  <% @items.each do |item| %>
-    <div class="slide-item">
-      <%= image_tag @item.image, :image, class:'sample-image'%>
-    </div>
+<div class="container new-item">
+  <h2>新着商品</h2>
+  <div class="row">
+      <% @items.first(4).each do |item| %>
+       <%= render "item_each" ,item: item %>
       <% end %>
+  </div>
+  <div class="all-items-show-button"><%= link_to "全ての商品をみる", items_path %></div>
 </div>
-
-      <p class="new-item my-3">新着商品</p>
-      <%= link_to '全ての商品を見る>',items_path %>

@@ -1,0 +1,11 @@
+<div class="col-md-3 col-sm-6">
+  <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
+    <%= link_to item_path(item) do %>
+    <div class="img-wrap"><%= image_tag item.image, size:"261x185", fallback: "no_image.jpeg" %></div>
+    <% end %>
+    <div class="card-body">
+      <p class="card-text"><%= item.name %></p>
+      <p class="card-text">¥<%= item.price %></p>
+    </div>
+  </div>
+</div>
