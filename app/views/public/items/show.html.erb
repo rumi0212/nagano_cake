@@ -6,7 +6,7 @@
     <div class='col-md-11 offset-md-1'>
       <div class="item_new">
         <div class="item_photo">
-          <%= image_tag @item.image,:image, format: 'jpeg', fallback: "no_image.jpeg",size:"300x200" %>
+          <%= image_tag @item.image, format: 'jpeg', fallback: "no_image.jpeg",size:"300x200" %>
         </div>
         <div class="item_text">
           <h2><%= @item.name %></h2>

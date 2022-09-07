@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col">
         <div class="text-right mb-1">
-          <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, local: true, data: {confirm: "全て削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+          <%= link_to 'カートを空にする', cart_items_path, method: :delete, local: true, data: {confirm: "全て削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
         </div>
       </div>
     </div>
@@ -25,10 +25,11 @@
             </thead>
 
             <tbody>
-              <% @cart_items.each do |cart_product| %>
+              <% @cart_items.each do |cart_item| %>
+              <% @subtotal += cart_item.subtotal %>
                 <tr>
                   <td>
-                    <%= image_tag @cart_item.image,:image, size:"60x50", fallback: "no_image.jpeg" %>
+                    <%= image_tag cart_item.item.image, size:"60x50", fallback: "no_image.jpeg" %>
                     <%= cart_item.item.name %>
                   </td>
                   <td>
@@ -38,15 +39,15 @@
                     <%= form_with model: @cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f| %>
                       <%= f.hidden_field :item_id, value: cart_item.item.id %>
                       <%= f.number_field :amount,value: cart_item.amount %>
-                      <%= f.submit '変更', class:"btn btn-primary" %>
+                      <%= f.submit '変更', class:"btn btn-success" %>
                     <% end %>
                   </td>
                   <td>
                     <%= cart_item.subtotal%>
                   </td>
-                    <% @合計金額 +=  cart_item.subtotal %>
+
                   <td>
-                    <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-sm btn-primary" %>
+                    <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-sm btn-danger" %>
                   </td>
                 </tr>
               <% end %>
@@ -62,7 +63,7 @@
         <tr>
           <td class="table-color">合計金額</td>
           <td>
-            ¥<%= @sum.to_s(:delimited) %>
+            <%= @subtotal %>
           </td>
         </tr>
       </table>
@@ -71,7 +72,7 @@
 
    <div class = "row">
      <div class = "col text-center">
-       <%= link_to '情報入力に進む', new_order_path, class:'btn btn-primary ' %>
+       <%= link_to '情報入力に進む', new_order_path, class:'btn btn-success ' %>
      </div>
    </div>
 
