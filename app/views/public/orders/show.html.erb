@@ -30,15 +30,15 @@
           <table class="table table-bordered border-dark col-3 ml-3 h-75">
                   <tr>
                       <th class="table-active table-color">商品合計</th>
-                      <th><%= total_price(@order_details).to_s(:delimited) %></th>
+                      <th><%= @subtotal %></th>
                   </tr>
                   <tr>
                     <th class="table-active table-color">配送料</th>
-                    <th><%= @order.spostage %></th>
+                    <th><%= @order.postage %></th>
                   </tr>
                   <tr>
                     <th class="table-active table-color">ご請求額</th>
-                    <th><%= @order.total_payment.to_s(:delimited) %></th>
+                    <th><%= @order.total_payment %></th>
                   </tr>
           </table>
           </div>
@@ -51,12 +51,16 @@
                   <th class="table-active">個数</th>
                   <th class="table-active">小計</th>
               </tr>
-              <% @order_products.each do |order_product| %>
+              <% sum = 0%>
+              <% @order_details.each do |order_detail| %>
               <tr>
                   <th><%= order_detail.item.name %></th>
-                  <th><%= order_detail.item.tax_in_price.to_s(:delimited) %></th>
+                  <th><%= order_detail.item.with_tax_price %></th>
                   <th><%= order_detail.amount %></th>
-                  <th><%= order_detail.tax_in_price.to_s(:delimited) %></th>
+                  <th>
+                    <%= sum += order_detail.amount * order_detail.item.with_tax_price%>
+                    <%#= order_detail.price %>
+                  </th>
               </tr>
               <% end %>
           </table>

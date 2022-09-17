@@ -7,6 +7,11 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    @subtotal = 0
+    @order_details.each do |order_detail|
+    @subtotal += order_detail.amount * order_detail.item.with_tax_price
+    @order.total_payment = @subtotal + @order.postage
+    end
   end
 
   def new
@@ -19,6 +24,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.postage = 800
     @order.payment_method = params[:order][:payment_method]
+    @subtotal = 0
 
     if params[:order][:address_num] == "0"
       @order.postal_code = current_customer.postal_code
@@ -52,8 +58,8 @@ class Public::OrdersController < ApplicationController
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart_item.item_id
       @order_detail.order_id = @order.id
-      @order_detail.count = cart_item.count
-      @order_detail.price = cart_item.item.price * cart_item.count
+      @order_detail.amount = cart_item.amount
+      @order_detail.price = cart_item.item.price * cart_item.amount
       @order_detail.save
       end
 

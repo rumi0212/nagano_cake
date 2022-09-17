@@ -12,20 +12,21 @@
           </tr>
         </thead>
         <tbody>
-          <% @cart_items.each do |cart| %>
+          <% @cart_items.each do |cart_item| %>
+          <% @subtotal += cart_item.subtotal %>
             <tr>
               <td class="text-left">
-                <%= image_tag( cart_item, :image, size: "60x50", fallback: "no_image.jpeg") %>
-                <%= cart_item.name %>
+                <%= image_tag cart_item.item.image, size:"60x50", fallback: "no_image.jpeg" %>
+                <%= cart_item.item.name %>
               </td>
               <td class="text-right">
-                <%= cart_item.item.price %>
+                <%= cart_item.item.with_tax_price%>
               </td>
               <td class="text-right">
                 <%= cart_item.amount %>
               </td>
               <td class="text-right">
-                <%= cart_item.item.price * cart_item.amount %>
+                <%= cart_item.subtotal%>
               </td>
             </tr>
         <% end %>
@@ -41,11 +42,11 @@
           </tr>
           <tr>
             <th class="info">商品合計</th>
-            <td class="text-right"><%= total_price(@cart_items).to_s(:delimited) %></td>
+            <td class="text-right"><%= @subtotal %></td>
           </tr>
           <tr>
             <th class="info">請求金額</th>
-            <td class="text-right"><%= billing(@order).to_s(:delimited) %></td>
+            <td class="text-right"><%= @order.postage + @subtotal %></td>
           </tr>
       </table>
     </div>
