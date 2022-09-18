@@ -2,6 +2,10 @@ class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :item
 
+  def subtotal
+    item.with_tax_price * amount
+  end
+
   enum making_status: {
     製作不可: 0,
     製作待ち: 1,

@@ -11,12 +11,12 @@
         <div class="item_text">
           <h2><%= @item.name %></h2>
           <p><%= @item.introduction %></p>
-          <p><h2>¥<%= @item.price %></h2>(税込)</p>
+          <p><h2>¥<%= (@item.price*1.1).to_i %></h2>(税込)</p>
            <div class='row'>
             <div class="item_amount">
              <%= form_with model: @cart_item, local:true do |f| %>
                <%= f.hidden_field :item_id, value: @item.id %>
-               <%= f.hidden_field :customer_id, :value => current_customer.id %>
+               
                <%= f.select :amount,[1,2,3,4,5,6,7,8,9,10],{include_blank: '個数選択'},required:true%>&emsp;
                <%= f.submit 'カートに入れる' ,class: 'btn btn-success btn-sm'%>
              <% end %>

@@ -21,7 +21,7 @@
                   </tr>
                   <tr>
                     <th class="table-active table-color">支払方法</th>
-                    <th><%= @order.payment_method %></th>
+                    <th><%= Order.payment_methods_i18n[@order.payment_method] %></th>
                   </tr><tr>
                     <th class="table-active table-color">ステータス</th>
                     <th><%= @order.order_status %></th>
@@ -43,7 +43,7 @@
           </table>
           </div>
 
-          <div class="row"><p class="font-weight-bold table-color">注文内容</p></div>
+          <div class="row"><p class="font-weight-bold ml-3 table-color">注文内容</p></div>
           <table class="table table-bordered border-dark col-9 mt-3 mb-5">
               <tr class="table-color">
                   <th class="table-active  col-6">商品</th>
@@ -51,15 +51,14 @@
                   <th class="table-active">個数</th>
                   <th class="table-active">小計</th>
               </tr>
-              <% sum = 0%>
+              <% sum = 0 %>
               <% @order_details.each do |order_detail| %>
               <tr>
                   <th><%= order_detail.item.name %></th>
                   <th><%= order_detail.item.with_tax_price %></th>
                   <th><%= order_detail.amount %></th>
                   <th>
-                    <%= sum += order_detail.amount * order_detail.item.with_tax_price%>
-                    <%#= order_detail.price %>
+                    <%= sum += order_detail.amount * order_detail.item.with_tax_price %>
                   </th>
               </tr>
               <% end %>

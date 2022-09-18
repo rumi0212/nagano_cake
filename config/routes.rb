@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   end
 
 # 顧客用
+  scope module: :public do
+  resource :customers,only: [:edit,:update]
+  end
+  
   devise_for :customers, skip: [:passwords], controllers: {
    registrations: "public/registrations",
    sessions: 'public/sessions'
@@ -29,7 +33,7 @@ Rails.application.routes.draw do
     get "about" => "homes#about"
     resources :items,only: [:index,:show]
 
-    resource :customers,only: [:edit,:update,:show] do
+    resource :customers,only: [:show] do
       collection do
     	get 'quit'
     	patch 'out'
@@ -38,7 +42,7 @@ Rails.application.routes.draw do
 
     resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
-        delete 'destroy_all'
+        delete '/' => 'cart_items#all_destroy'
       end
     end
 

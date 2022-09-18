@@ -1,40 +1,40 @@
 <div class="container">
 
   <div class="mt-5">
-    <span class="fs-3  offset-md-1 bg-light">会員情報編集</span>
+    <h4 class="mb-4 text-color col-4 text-center pb-2 pt-2 rounded-pill">会員情報編集</h4>
   </div>
-  <%= form_with model: @customer, local: true do |f| %>
+  <%= form_with model: @customer, url:customers_path, local: true do |f| %>
 
-    <div class="form-inline">
-      <%= f.label :氏名, class:"col-1 mt-5" %>
-      <%= f.text_field :last_name, class:"offset-1 col-3", autofocus: true %>
-      <%= f.text_field :first_name, class:"offset-1 col-3", autofocus: true %>
+    <div class="form-group">
+      <%= f.label :氏名, class:"col-2 mt-3" %>
+      <%= f.text_field :last_name, class:"rounded", autofocus: true %>
+      <%= f.text_field :first_name, class:"rounded", autofocus: true %>
     </div>
 
     <div class="form-group">
-      <%= f.label :フリガナ, class:"col-1 mt-3" %>
-      <%= f.text_field :last_name_kana, class:"offset-1 col-3", autofocus: true %>
-      <%= f.text_field :first_name_kana, class:"offset-1 col-3", autofocus: true %>
+      <%= f.label :フリガナ, class:"col-2 mt-3" %>
+      <%= f.text_field :last_name_kana, class:"rounded", autofocus: true %>
+      <%= f.text_field :first_name_kana, class:"rounded", autofocus: true %>
     </div>
 
     <div class="form-group">
-      <%= f.label :郵便番号, class:"col-1 mt-3" %>
-      <%= f.text_field :postal_code, class:"offset-1 col-3", autofocus: true %>
+      <%= f.label :郵便番号, class:"col-2 mt-3" %>
+      <%= f.text_field :postal_code, class:"rounded", autofocus: true %>
     </div>
 
     <div class="form-group">
-      <%= f.label :住所, class:"col-1 mt-3" %>
-      <%= f.text_field :address, class:"offset-1 col-3", autofocus: true %>
+      <%= f.label :住所, class:"col-2 mt-3" %>
+      <%= f.text_field :address, class:"rounded col-6 mb-3", autofocus: true %>
     </div>
 
     <div class="form-group">
-      <%= f.label :電話番号, class:"col-1 mt-3" %>
-      <%= f.telephone_field :telephone_number, class:"offset-1 col-3", autofocus: true %>
+      <%= f.label :電話番号, class:"col-2 mt-3" %>
+      <%= f.telephone_field :telephone_number, class:"rounded", autofocus: true %>
     </div>
 
     <div class="form-group">
       <%= f.label :メールアドレス, class:"col-2 mt-3" %>
-      <%= f.email_field :email, class:"col-3", autofocus: true %>
+      <%= f.email_field :email, class:"rounded", autofocus: true %>
     </div>
 
     <%= f.submit "編集内容を保存", class: "btn btn-success offset-2 col-2 mt-5" %>

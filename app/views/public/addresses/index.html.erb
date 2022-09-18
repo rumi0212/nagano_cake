@@ -1,23 +1,23 @@
 <div class="container">
   <div class="mt-5">
-    <span class="fs-3  offset-md-1 bg-light font-monospace">配送先登録/一覧</span>
+    <h4 class="mb-4 text-color col-4 text-center pb-2 pt-2 rounded-pill">配送先登録/一覧</h4>
   </div>
   <%= render "layouts/error_message", model: @address %>
   <%= form_with model: @address, local: true do |f| %>
 
     <div class="form-inline">
-      <%= f.label :郵便番号（ハイフンなし）, class:"col-3 mt-5" %>
-      <%= f.text_field :postal_code, class:"col-3", placeholder:"0000000" %>
+      <%= f.label :郵便番号（ハイフンなし）, class:"col-4" %>
+      <%= f.text_field :postal_code, class: 'rounded', placeholder:"0000000" %>
     </div>
   　<div class="form-inline">
-      <%= f.label :住所, class:"col-1" %>
-      <%= f.text_field :address, class:"offset-2 col-6", placeholder:"東京都渋谷区代々木神園町0-0" %>
+      <%= f.label :住所, class:"col-4" %>
+      <%= f.text_field :address, class: 'rounded col-5 mb-4', placeholder:"東京都渋谷区代々木神園町0-0" %>
     </div>
     <div class="form-inline">
-      <%= f.label :宛名, class:"col-1 mt-4" %>
-      <%= f.text_field :name, class:"offset-2 col-3", placeholder:"令和道子" %>
+      <%= f.label :宛名, class:"col-4" %>
+      <%= f.text_field :name, class: 'rounded ', placeholder:"令和道子" %>
+      <%= f.submit "新規登録", class: "btn btn-success offset-1" %>
     </div>
-    <%= f.submit "新規登録", class: "btn btn-success mt-5 offset-3" %>
   <% end %>
 
   <table class="table table-bordered mt-5 mb-5">

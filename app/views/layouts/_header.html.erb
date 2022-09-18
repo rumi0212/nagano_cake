@@ -1,7 +1,7 @@
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <%= link_to "NaganoCAKE", root_path, class:"header-title navbar-brand" %>
+      <%= link_to "NaganoCake", root_path, class:"header-title navbar-brand" %>
         <div class="navbar mt-4 nav-left" id="navbarToggleExternalContent">
           <% if customer_signed_in? %>
             <%= link_to 'マイページ', customers_path(current_customer), class: "btn btn-outline-secondary mx-3 my-1" %>
@@ -18,18 +18,12 @@
 
           <% else %>
             <%= link_to '　 About　 ',about_path,class: "btn btn-outline-secondary mx-3 my-1" %>
-            <%= link_to ' 商品一覧 ',admin_items_path,class: "btn btn-outline-secondary mx-3 my-1" %>
+            <%= link_to ' 商品一覧 ',items_path,class: "btn btn-outline-secondary mx-3 my-1" %>
             <%= link_to ' 新規登録 ', new_customer_registration_path,class: "btn btn-outline-secondary mx-3 my-1" %>
             <%= link_to ' ログイン ', new_customer_session_path,class: "btn btn-outline-secondary mx-3 my-1" %>
           <% end %>
         </div>
-        <nav class="navbar navbar-dark bg-dark header-nav mt-0" media="screen and (max-width: 480px)">
-          <div class="container-fluid">
-            <button class="navbar-toggler mx-5" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div>
-        </nav>
+
     </div>
   </nav>
 </header>

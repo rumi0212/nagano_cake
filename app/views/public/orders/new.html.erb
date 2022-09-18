@@ -24,7 +24,8 @@
             <div class="form-check mt-3">
                 <%= f.radio_button :address_num,0,  checked: "checked" %>
                 <%= f.label :address, "ご自身の住所" %>
-                <p class="ml-3"><%= @address %></p>
+                <p class="ml-3">〒<%= current_customer.postal_code %><%= current_customer.address %><br>
+                <%= current_customer.last_name %><%= current_customer.first_name %></p>
 
                 <%= f.radio_button :address_num, 1 %>
                 <%= f.label :address, "登録済住所から選択" %>

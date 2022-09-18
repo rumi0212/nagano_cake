@@ -8,6 +8,7 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
+    @subtotal = 0
   end
 
   def update
@@ -16,7 +17,7 @@ class Admin::OrdersController < ApplicationController
     flash[:notice] = "注文ステータスの変更しました"
     redirect_to admin_order_path(@order)
 
-    if @order.status == "入金確認"
+    if @order.order_status == "入金確認"
       @order.order_details.each do |order_detail|
         order_detail.update(making_status: 1)
       end
