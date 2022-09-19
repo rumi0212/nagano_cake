@@ -2,7 +2,7 @@
   <h2 class="text-center m-5"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h2>
   <div class="row d-flex justify-content-center">
 
-  <%= form_with model: @customer, url: admin_customer_path, local: true do |f| %>
+  <%= form_with model: @customer, url: admin_customer_path, method: :patch, local: true do |f| %>
     <div class="col-xs-10 offset-1">
       <div class="form-group col-xs-9">
         <%= f.label :"会員ID", class: "col-sm-4" %>
@@ -42,10 +42,10 @@
 
       <div class="form-group col-xs-9">
         <%= f.label :"会員ステータス", class: "col-sm-4 control-label" %>
-        　<%= f.radio_button :is_active, false %>
-        　<%= f.label :is_active, "有効"%>
-        　<%= f.radio_button :is_active, true %>
-        　<%= f.label :is_active, "退会" %>
+        　<%= f.radio_button :is_deleted, false %>
+        　<%= f.label :is_deleted, "有効"%>
+        　<%= f.radio_button :is_deleted, true %>
+        　<%= f.label :is_deleted, "退会" %>
       </div>
     </div>
       <div class="form-group col-xs-9 d-flex justify-content-around">
