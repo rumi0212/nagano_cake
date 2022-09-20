@@ -58,7 +58,7 @@
                   <th><%= order_detail.item.with_tax_price %></th>
                   <th><%= order_detail.amount %></th>
                   <th>
-                    <%= sum += order_detail.amount * order_detail.item.with_tax_price %>
+                    <%= order_detail.subtotal %>
                   </th>
               </tr>
               <% end %>
